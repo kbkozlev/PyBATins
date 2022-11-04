@@ -49,7 +49,7 @@ echo echo %%a ^>^> script.txt >> script_encoded_echo_mod.txt
 type script_encoded_echo_mod.txt >> installer_%name%.bat
 
 del script_encoded.txt
-del del script_encoded_echo_mod.txt
+del script_encoded_echo_mod.txt
 
 echo. >> installer_%name%.bat
 echo certutil -decode script.txt %name%.py ^>nul 2^>^&1 >> installer_%name%.bat
