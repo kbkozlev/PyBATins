@@ -98,3 +98,8 @@ echo ) >> installer_%name%.bat
 echo. >> installer_%name%.bat
 echo echo. >> installer_%name%.bat
 echo pause^>nul^|set/p =Instalation finnished, press any key to exit... >> installer_%name%.bat
+
+set /p "txt=Do you want a text version of this file Y/N? "
+
+if %txt% == y (
+type installer_%name%.bat >> installer_%name%.txt )
