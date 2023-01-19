@@ -1,30 +1,30 @@
 :: Created by kbkozlev
 
 @echo off
+chcp 65001 >nul 2>&1
 setlocal enableextensions disabledelayedexpansion
 
 :START
-echo  _______________________________________________
-echo ^|                                               ^|
-echo ^|             Welcome to PyBATins!              ^|
-echo ^|             --------------------              ^|
-echo ^|                                               ^|
-echo ^| This script will take in your Python scripts  ^|
-echo ^| and the requirements file and turn them into  ^|
-echo ^| a self-contained BAT file that can be shared; ^|
-echo ^|                                               ^|
-echo ^| The output BAT file will check for Python and ^|
-echo ^| install it if its missing, after that it will ^|
-echo ^| re-create the original Python and Req. files  ^|
-echo ^| along with a starter and optional timer file; ^|
-echo ^|                                               ^|
-echo ^| The purpose is to bypass EXE and other corp.  ^|
-echo ^| blocks; Optionally the output can be in TXT   ^|
-echo ^| so that sharing of BAT files can be avoided.  ^| 
-echo ^|                                               ^|
-echo ^| MIT License Copyright (c) 2022, Kaloian Kozlev^|
-echo ^|_______________________________________________^|
-echo.
+
+echo ╔════════════════════════════════════════════════╗
+echo ║              Welcome to PyBATins!              ║
+echo ╠════════════════════════════════════════════════╣
+echo ║ This script will take in your Python scripts   ║
+echo ║ and the requirements file and turn them into   ║
+echo ║ a self-contained BAT file that can be shared;  ║
+echo ║                                                ║
+echo ║ The output BAT file will check for Python and  ║
+echo ║ install it if its missing, after that it will  ║
+echo ║ re-create the original Python and Req. files   ║
+echo ║ along with a starter and optional timer file;  ║
+echo ║                                                ║
+echo ║ The purpose is to bypass EXE and other corp.   ║
+echo ║ blocks; Optionally the output can be in TXT    ║
+echo ║ so that sharing of BAT files can be avoided.   ║
+echo ╠════════════════════════════════════════════════╣
+echo ║ MIT License Copyright (c) 2022, Kaloian Kozlev ║
+echo ╚════════════════════════════════════════════════╝
+echo. 
 
 set /p "name=Enter name: "
 IF [%name%]==[] GOTO ERROR_NAME
