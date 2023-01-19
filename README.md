@@ -4,4 +4,5 @@ The output BAT file will check for Python and install it if its missing, after t
 The purpose of this script is to bypass EXE and other corporate blocks. 
 Optionally the output can be in TXT so that sharing of BAT files can be avoided.  
 
+# Demo
 ![](https://github.com/kbkozlev/PyBATins/blob/master/Animation.gif)
