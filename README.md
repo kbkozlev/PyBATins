@@ -1,2 +1,5 @@
-# Python-script-BAT-installer
-This is a BAT script, which takes in your python script file and the requirements file and returns an "installer" for your script which can be shared.
+# PyBATins
+This script will take in your Python scripts and the requirements file and turn them into a self-contained BAT file that can be shared.
+The output BAT file will check for Python and install it if its missing, after that it will re-create the original Python and Requirements files along with a starter and optional timer file. 
+The purpose of this script is to bypass EXE and other corporate blocks. 
+Optionally the output can be in TXT so that sharing of BAT files can be avoided.  
