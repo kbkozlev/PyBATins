@@ -37,7 +37,7 @@ IF [%py_script%]==[] GOTO ERROR_SCR
 set /p "req_file=Path to requirements.txt: "
 IF [%req_file%]==[] GOTO ERROR_REQ
 
-echo ^:^: This code was generated automatically by a software developed by kbkozlev > %name%_installer.bat
+echo ^:^: This code was generated automatically by PyBATins > %name%_installer.bat
 echo. >> %name%_installer.bat
 echo @echo off >> %name%_installer.bat
 echo. >> %name%_installer.bat
