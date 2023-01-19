@@ -5,6 +5,7 @@ setlocal enableextensions disabledelayedexpansion
 
 chcp 65001 >nul 2>&1
 mode 70, 23
+
 :START
 echo ╔════════════════════════════════════════════════════════════════════╗
 echo ║                        Welcome to PyBATins!                        ║
@@ -16,22 +17,43 @@ echo ║ The output BAT file will check for Python and install it, if it is ║
 echo ║ missing. After that it will re-create the original Python and      ║
 echo ║ requirement.txt files along with a starter and optional timer.     ║
 echo ║                                                                    ║
-echo ║ The purpose is to bypass EXE and other corporate blocks. Optionally║
-echo ║ the output can be in TXT so that the sharing of BAT files can be   ║
-echo ║ avoided.                                                           ║
+echo ║ The purpose is to bypass EXE blocking and other security measures. ║
+echo ║ Optionally the output can be a TXT file so that the sharing of BAT ║
+echo ║ files can be avoided.                                              ║
 echo ╠════════════════════════════════════════════════════════════════════╣
 echo ║           MIT License Copyright (c) 2022, Kaloian Kozlev           ║
 echo ╚════════════════════════════════════════════════════════════════════╝
 echo. 
 
 set /p "name=Enter name: "
-IF [%name%]==[] GOTO ERROR_NAME
+
+if [%name%]==[] (
+echo.
+echo Please enter a name!
+pause
+cls
+goto START
+)
 
 set /p "py_script=Path to script: "
-IF [%py_script%]==[] GOTO ERROR_SCR
+
+if [%py_script%]==[]  (
+echo.
+echo Please enter the path to the script!
+pause
+cls
+goto START
+)
 
 set /p "req_file=Path to requirements.txt: "
-IF [%req_file%]==[] GOTO ERROR_REQ
+
+if [%req_file%]==[]  (
+echo.
+echo Please enter the path to the requirements file!
+pause
+cls
+goto START
+)
 
 echo ^:^: This code was generated automatically by PyBATins > %name%_installer.bat
 echo ^:^: Copyright (c) 2022 Kaloian Kozlev >> %name%_installer.bat
@@ -175,24 +197,3 @@ if %txt% == y (
 type %name%_installer.bat >> installer_%name%.txt )
 
 goto :EOF
-
-:ERROR_NAME
-echo.
-echo Please enter a name!
-pause
-cls
-goto START
-
-:ERROR_SCR
-echo.
-echo Please enter the path to the script!
-pause
-cls
-goto START
-
-:ERROR_REQ
-echo.
-echo Please enter the path to the requirements file!
-pause
-cls
-goto START
