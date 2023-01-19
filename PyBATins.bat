@@ -1,39 +1,35 @@
 :: Created by kbkozlev
 
 @echo off
-chcp 65001 >nul 2>&1
 setlocal enableextensions disabledelayedexpansion
 
+chcp 65001 >nul 2>&1
+mode 70, 23
 :START
-
-echo ╔════════════════════════════════════════════════╗
-echo ║              Welcome to PyBATins!              ║
-echo ╠════════════════════════════════════════════════╣
-echo ║ This script will take in your Python scripts   ║
-echo ║ and the requirements file and turn them into   ║
-echo ║ a self-contained BAT file that can be shared;  ║
-echo ║                                                ║
-echo ║ The output BAT file will check for Python and  ║
-echo ║ install it if its missing, after that it will  ║
-echo ║ re-create the original Python and Req. files   ║
-echo ║ along with a starter and optional timer file;  ║
-echo ║                                                ║
-echo ║ The purpose is to bypass EXE and other corp.   ║
-echo ║ blocks; Optionally the output can be in TXT    ║
-echo ║ so that sharing of BAT files can be avoided.   ║
-echo ╠════════════════════════════════════════════════╣
-echo ║ MIT License Copyright (c) 2022, Kaloian Kozlev ║
-echo ╚════════════════════════════════════════════════╝
+echo ╔════════════════════════════════════════════════════════════════════╗
+echo ║                        Welcome to PyBATins!                        ║
+echo ╠════════════════════════════════════════════════════════════════════╣
+echo ║ This script will take in your Python scripts and the requirements  ║
+echo ║ file and turn them into a stand-alone BAT file that can be shared. ║
+echo ║                                                                    ║
+echo ║ The output BAT file will check for Python and install it, if it is ║
+echo ║ missing. After that it will re-create the original Python and      ║
+echo ║ requirement.txt files along with a starter and optional timer.     ║
+echo ║                                                                    ║
+echo ║ The purpose is to bypass EXE and other corporate blocks. Optionally║
+echo ║ the output can be in TXT so that the sharing of BAT files can be   ║
+echo ║ avoided.                                                           ║
+echo ╠════════════════════════════════════════════════════════════════════╣
+echo ║           MIT License Copyright (c) 2022, Kaloian Kozlev           ║
+echo ╚════════════════════════════════════════════════════════════════════╝
 echo. 
 
 set /p "name=Enter name: "
 IF [%name%]==[] GOTO ERROR_NAME
 
-:SCRIPT
 set /p "py_script=Path to script: "
 IF [%py_script%]==[] GOTO ERROR_SCR
 
-:REQUIREMENTS
 set /p "req_file=Path to requirements.txt: "
 IF [%req_file%]==[] GOTO ERROR_REQ
 
@@ -192,11 +188,11 @@ echo.
 echo Please enter the path to the script!
 pause
 cls
-goto SCRIPT
+goto START
 
 :ERROR_REQ
 echo.
 echo Please enter the path to the requirements file!
 pause
 cls
-goto REQUIREMENTS
+goto START
