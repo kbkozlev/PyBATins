@@ -37,41 +37,41 @@ IF [%py_script%]==[] GOTO ERROR_SCR
 set /p "req_file=Path to requirements.txt: "
 IF [%req_file%]==[] GOTO ERROR_REQ
 
-echo ^:^: This code was generated automatically by a software developed by kbkozlev > installer_%name%.bat
-echo. >> installer_%name%.bat
-echo @echo off >> installer_%name%.bat
-echo. >> installer_%name%.bat
-echo echo ^^^>  Checking for Python >> installer_%name%.bat
-echo. >> installer_%name%.bat
-echo python --version ^>nul 2^>^&1 >> installer_%name%.bat
-echo. >> installer_%name%.bat
-echo if errorlevel 1 ( >> installer_%name%.bat
-echo echo -- Python not found, installing python >> installer_%name%.bat
-echo start /W /B winget install -e --id Python.Python.3.11 >> installer_%name%.bat
-echo ) else ( >> installer_%name%.bat
-echo echo -- Python found >> installer_%name%.bat
-echo ) >> installer_%name%.bat
-echo. >> installer_%name%.bat
-echo echo. >> installer_%name%.bat
-echo echo ^^^>  Creating folder >> installer_%name%.bat
-echo. >> installer_%name%.bat
-echo dir %name% ^>nul 2^>^&1 >> installer_%name%.bat
-echo. >> installer_%name%.bat
-echo if errorlevel 1 ( >> installer_%name%.bat
-echo mkdir %name% >> installer_%name%.bat
-echo echo -- Folder created >> installer_%name%.bat
-echo ) else ( >> installer_%name%.bat
-echo echo -- Folder found >> installer_%name%.bat
-echo ) >> installer_%name%.bat
-echo. >> installer_%name%.bat
-echo cd %name% >> installer_%name%.bat
-echo. >> installer_%name%.bat
-echo echo. >> installer_%name%.bat
-echo echo ^^^>  Creating Script and Requirements >> installer_%name%.bat
-echo if exist %name%.py ( >> installer_%name%.bat
-echo echo -- Script found >> installer_%name%.bat
-echo ) else ( >> installer_%name%.bat
-echo. >> installer_%name%.bat
+echo ^:^: This code was generated automatically by a software developed by kbkozlev > %name%_installer.bat
+echo. >> %name%_installer.bat
+echo @echo off >> %name%_installer.bat
+echo. >> %name%_installer.bat
+echo echo ^^^>  Checking for Python >> %name%_installer.bat
+echo. >> %name%_installer.bat
+echo python --version ^>nul 2^>^&1 >> %name%_installer.bat
+echo. >> %name%_installer.bat
+echo if errorlevel 1 ( >> %name%_installer.bat
+echo echo -- Python not found, installing python >> %name%_installer.bat
+echo start /W /B winget install -e --id Python.Python.3.11 >> %name%_installer.bat
+echo ) else ( >> %name%_installer.bat
+echo echo -- Python found >> %name%_installer.bat
+echo ) >> %name%_installer.bat
+echo. >> %name%_installer.bat
+echo echo. >> %name%_installer.bat
+echo echo ^^^>  Creating folder >> %name%_installer.bat
+echo. >> %name%_installer.bat
+echo dir %name% ^>nul 2^>^&1 >> %name%_installer.bat
+echo. >> %name%_installer.bat
+echo if errorlevel 1 ( >> %name%_installer.bat
+echo mkdir %name% >> %name%_installer.bat
+echo echo -- Folder created >> %name%_installer.bat
+echo ) else ( >> %name%_installer.bat
+echo echo -- Folder found >> %name%_installer.bat
+echo ) >> %name%_installer.bat
+echo. >> %name%_installer.bat
+echo cd %name% >> %name%_installer.bat
+echo. >> %name%_installer.bat
+echo echo. >> %name%_installer.bat
+echo echo ^^^>  Creating Script and Requirements >> %name%_installer.bat
+echo if exist %name%.py ( >> %name%_installer.bat
+echo echo -- Script found >> %name%_installer.bat
+echo ) else ( >> %name%_installer.bat
+echo. >> %name%_installer.bat
 
 certutil -encode %py_script% script_encoded.txt >nul 2>&1
 
@@ -79,23 +79,23 @@ for /f "tokens=* delims= " %%a in (script_encoded.txt) do (
 set /a N+=1
 echo echo %%a ^>^> script.txt >> script_encoded_echo_mod.txt
 )
-type script_encoded_echo_mod.txt >> installer_%name%.bat
+type script_encoded_echo_mod.txt >> %name%_installer.bat
 
 del script_encoded.txt
 del script_encoded_echo_mod.txt
 
-echo. >> installer_%name%.bat
-echo certutil -decode script.txt %name%.py ^>nul 2^>^&1 >> installer_%name%.bat
-echo del "script.txt" >> installer_%name%.bat
-echo. >> installer_%name%.bat
-echo echo -- Script created >> installer_%name%.bat
-echo ) >> installer_%name%.bat
+echo. >> %name%_installer.bat
+echo certutil -decode script.txt %name%.py ^>nul 2^>^&1 >> %name%_installer.bat
+echo del "script.txt" >> %name%_installer.bat
+echo. >> %name%_installer.bat
+echo echo -- Script created >> %name%_installer.bat
+echo ) >> %name%_installer.bat
 
-echo. >> installer_%name%.bat
-echo if exist requirements.txt ( >> installer_%name%.bat
-echo echo -- Requirements found >> installer_%name%.bat
-echo ) else ( >> installer_%name%.bat
-echo. >> installer_%name%.bat
+echo. >> %name%_installer.bat
+echo if exist requirements.txt ( >> %name%_installer.bat
+echo echo -- Requirements found >> %name%_installer.bat
+echo ) else ( >> %name%_installer.bat
+echo. >> %name%_installer.bat
 
 certutil -encode %req_file% req_encoded.txt >nul 2>&1
 
@@ -103,33 +103,33 @@ for /f "tokens=* delims= " %%a in (req_encoded.txt) do (
 set /a N+=1
 echo echo %%a ^>^> requirements_encoded.txt >> requirements_encoded_echo_mod.txt
 )
-type requirements_encoded_echo_mod.txt >> installer_%name%.bat
+type requirements_encoded_echo_mod.txt >> %name%_installer.bat
 
 del req_encoded.txt
 del requirements_encoded_echo_mod.txt
 
-echo. >> installer_%name%.bat
-echo certutil -decode requirements_encoded.txt requirements.txt ^>nul 2^>^&1 >> installer_%name%.bat
-echo del "requirements_encoded.txt" >> installer_%name%.bat
-echo. >> installer_%name%.bat
-echo echo -- Requirements created >> installer_%name%.bat
+echo. >> %name%_installer.bat
+echo certutil -decode requirements_encoded.txt requirements.txt ^>nul 2^>^&1 >> %name%_installer.bat
+echo del "requirements_encoded.txt" >> %name%_installer.bat
+echo. >> %name%_installer.bat
+echo echo -- Requirements created >> %name%_installer.bat
 
-echo echo. >> installer_%name%.bat
-echo echo ^^^>  Installing requirements.txt >> installer_%name%.bat
-echo pip install -r requirements.txt ^>nul 2^>^&1 >> installer_%name%.bat
-echo echo -- requirements.txt installed >> installer_%name%.bat
-echo ) >> installer_%name%.bat
-echo. >> installer_%name%.bat
-echo echo. >> installer_%name%.bat
-echo echo ^^^>  Creating Launcher >> installer_%name%.bat
-echo if exist starter.bat ( >> installer_%name%.bat
-echo echo -- Launcher found >> installer_%name%.bat
-echo ) else ( >> installer_%name%.bat
-echo echo python %name%.py ^> starter.bat >> installer_%name%.bat
-echo echo -- Launcher created >> installer_%name%.bat
-echo ) >> installer_%name%.bat
-echo. >> installer_%name%.bat
-echo echo. >> installer_%name%.bat
+echo echo. >> %name%_installer.bat
+echo echo ^^^>  Installing requirements.txt >> %name%_installer.bat
+echo pip install -r requirements.txt ^>nul 2^>^&1 >> %name%_installer.bat
+echo echo -- requirements.txt installed >> %name%_installer.bat
+echo ) >> %name%_installer.bat
+echo. >> %name%_installer.bat
+echo echo. >> %name%_installer.bat
+echo echo ^^^>  Creating Launcher >> %name%_installer.bat
+echo if exist starter.bat ( >> %name%_installer.bat
+echo echo -- Launcher found >> %name%_installer.bat
+echo ) else ( >> %name%_installer.bat
+echo echo python %name%.py ^> starter.bat >> %name%_installer.bat
+echo echo -- Launcher created >> %name%_installer.bat
+echo ) >> %name%_installer.bat
+echo. >> %name%_installer.bat
+echo echo. >> %name%_installer.bat
 
 set /p "timer=Do you want to have a timer for this application Y/N? "
 
@@ -156,18 +156,18 @@ set /a N+=1
 echo echo %%a ^>^> timer.txt >> timer_encoded_echo_mod.txt
 )
 
-type timer_encoded_echo_mod.txt >> installer_%name%.bat
+type timer_encoded_echo_mod.txt >> %name%_installer.bat
 
 del timer.txt
 del timer_encoded.txt
 del timer_encoded_echo_mod.txt
 
 
-echo certutil -decode timer.txt %name%_timer.bat ^>nul 2^>^&1 >> installer_%name%.bat
+echo certutil -decode timer.txt %name%_timer.bat ^>nul 2^>^&1 >> %name%_installer.bat
 
-echo del timer.txt >> installer_%name%.bat
+echo del timer.txt >> %name%_installer.bat
 
-echo pause^>nul^|set/p =Instalation finnished, press any key to exit... >> installer_%name%.bat
+echo pause^>nul^|set/p =Instalation finnished, press any key to exit... >> %name%_installer.bat
 
 )
 
@@ -175,9 +175,9 @@ echo pause^>nul^|set/p =Instalation finnished, press any key to exit... >> insta
 set /p "txt=Do you want a text version of this file Y/N? "
 
 if %txt% == y (
-type installer_%name%.bat >> installer_%name%.txt )
+type %name%_installer.bat >> installer_%name%.txt )
 
-goto :eof
+goto :EOF
 
 :ERROR_NAME
 echo.
