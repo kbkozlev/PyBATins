@@ -1,7 +1,7 @@
 <center>
 <img src="https://github.com/kbkozlev/PyBATins/blob/master/.github/New%20Project.png"  
-     width="300" 
-     height="300" />
+     width="200" 
+     height="200" />
 
 <a href="https://github.com/kbkozlev/PyBATins/blob/master/LICENSE.md" alt="License">
   <img src="https://img.shields.io/github/license/kbkozlev/PyBATins?color=blue&style=for-the-badge" />
