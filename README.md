@@ -1,7 +1,6 @@
-<center>
-<img src="https://github.com/kbkozlev/PyBATins/blob/master/.github/New%20Project.png"  
-     width="200" 
-     height="200" />
+<div align='center'>
+     
+<img src="https://github.com/kbkozlev/PyBATins/blob/master/.github/New%20Project.png" alt="logo" width="200" height="200"><br/>
 
 <a href="https://github.com/kbkozlev/PyBATins/blob/master/LICENSE.md" alt="License">
   <img src="https://img.shields.io/github/license/kbkozlev/PyBATins?color=blue&style=for-the-badge" />
@@ -10,7 +9,8 @@
 <a href="https://github.com/kbkozlev/PyBATins/releases" alt="GitHub release">
   <img src="https://img.shields.io/github/v/release/kbkozlev/PyBATins?color=blue&style=for-the-badge" />
 </a>
-</center>
+     
+</div>
 
 #
 This script will take in your Python scripts and the requirements file and turn them into a self-contained BAT file that can be shared.
