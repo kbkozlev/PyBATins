@@ -50,13 +50,7 @@ goto START
 
 set /p "req_file=Path to requirements.txt: "
 
-if [%req_file%]==[]  (
-echo.
-echo Please enter the path to the requirements file!
-pause
-cls
-goto START
-)
+
 
 :: Begin writing the installer file
 echo ^:^: This code was generated automatically by PyBATins > %name%_installer.bat
@@ -77,9 +71,9 @@ echo ) else ( >> %name%_installer.bat
 echo echo -- Python found >> %name%_installer.bat
 echo ) >> %name%_installer.bat
 echo. >> %name%_installer.bat
-echo echo. >> %name%_installer.bat
 
 :: Folder check/create in the installer file
+echo echo. >> %name%_installer.bat
 echo echo ^^^>  Creating folder >> %name%_installer.bat
 echo. >> %name%_installer.bat
 echo dir %name% ^>nul 2^>^&1 >> %name%_installer.bat
@@ -93,10 +87,10 @@ echo ) >> %name%_installer.bat
 echo. >> %name%_installer.bat
 echo cd %name% >> %name%_installer.bat
 echo. >> %name%_installer.bat
-echo echo. >> %name%_installer.bat
 
 :: Script check/create in the installer file
-echo echo ^^^>  Creating Script and Requirements >> %name%_installer.bat
+echo echo. >> %name%_installer.bat
+echo echo ^^^>  Creating Script >> %name%_installer.bat
 echo if exist %name%.py ( >> %name%_installer.bat
 echo echo -- Script found >> %name%_installer.bat
 echo ) else ( >> %name%_installer.bat
@@ -125,11 +119,15 @@ echo. >> %name%_installer.bat
 echo echo -- Script created >> %name%_installer.bat
 echo ) >> %name%_installer.bat
 
+:: Check if requirements.txt is present otherwise skip
+if not [%req_file%]==[]  (
+
 :: Requirements txt check/create in the installer file
-echo. >> %name%_installer.bat
+echo echo. >> %name%_installer.bat
+echo echo ^^^>  Creating Requirements >> %name%_installer.bat
 echo if exist requirements.txt ( >> %name%_installer.bat
 echo echo -- Requirements found >> %name%_installer.bat
-echo ) else ( >> %name%_installer.bat
+echo ^) else ( >> %name%_installer.bat
 echo. >> %name%_installer.bat
 
 :: Create encoded version of requirements.txt
@@ -154,14 +152,16 @@ echo del "requirements_encoded.txt" >> %name%_installer.bat
 echo. >> %name%_installer.bat
 echo echo -- Requirements created >> %name%_installer.bat
 echo echo. >> %name%_installer.bat
+echo. >> %name%_installer.bat
 echo echo ^^^>  Installing requirements.txt >> %name%_installer.bat
 echo pip install -r requirements.txt ^>nul 2^>^&1 >> %name%_installer.bat
 echo echo -- requirements.txt installed >> %name%_installer.bat
-echo ) >> %name%_installer.bat
+echo ^) >> %name%_installer.bat
 echo. >> %name%_installer.bat
-echo echo. >> %name%_installer.bat
+)
 
 :: Write check/create launcher in the installer file
+echo echo. >> %name%_installer.bat
 echo echo ^^^>  Creating Launcher >> %name%_installer.bat
 echo if exist starter.bat ( >> %name%_installer.bat
 echo echo -- Launcher found >> %name%_installer.bat
@@ -170,7 +170,6 @@ echo echo python %name%.py ^> starter.bat >> %name%_installer.bat
 echo echo -- Launcher created >> %name%_installer.bat
 echo ) >> %name%_installer.bat
 echo. >> %name%_installer.bat
-echo echo. >> %name%_installer.bat
 
 :: Implement choice of timer
 set /p "timer=Do you want to have a timer for this application Y/N? "
@@ -201,6 +200,7 @@ echo echo %%a ^>^> timer.txt >> timer_encoded_echo_mod.txt
 )
 
 :: Write check/create timer in the installer file
+echo echo. >> %name%_installer.bat
 echo echo ^^^>  Creating Timer >> %name%_installer.bat
 echo if exist %name%_timer.bat ( >> %name%_installer.bat
 echo echo -- Timer found >> %name%_installer.bat
@@ -213,9 +213,9 @@ echo certutil -decode timer.txt %name%_timer.bat ^>nul 2^>^&1 >> %name%_installe
 echo del timer.txt >> %name%_installer.bat
 echo echo -- Timer created >> %name%_installer.bat
 echo ^) >> %name%_installer.bat
-echo echo. >> %name%_installer.bat
 
 :: End of installer
+echo echo. >> %name%_installer.bat
 echo pause^>nul^|set/p =Instalation finnished, press any key to exit... >> %name%_installer.bat
 )
 
