@@ -1,6 +1,6 @@
 <div align='center'>
      
-<img src="https://github.com/kbkozlev/PyBATins/blob/master/.github/New%20Project.png" alt="logo" width="200" height="200"><br/>
+<img src="https://github.com/kbkozlev/PyBATins/blob/master/.github/PyBATins%20logo.png" alt="logo" width="200" height="200"><br/>
 
 <a href="https://github.com/kbkozlev/PyBATins/blob/master/LICENSE.md" alt="License">
   <img src="https://img.shields.io/github/license/kbkozlev/PyBATins?color=blue&style=for-the-badge" />
@@ -19,5 +19,5 @@ The purpose of this script is to bypass EXE and other corporate blocks.
 Optionally the output can be in TXT so that sharing of BAT files can be avoided.  
 
 # Demo
-![](https://github.com/kbkozlev/PyBATins/blob/master/.github/Animation.gif)
+![](https://github.com/kbkozlev/PyBATins/blob/master/.github/Demo%20GIF.gif)
 
