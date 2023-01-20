@@ -162,9 +162,9 @@ echo set /p "hour=Enter Hours: " >> timer.txt
 echo set /p "min=Enter Minutes: " >> timer.txt
 echo set /a total=((hour*60^) + min^)* 60 >> timer.txt
 echo. >> timer.txt
-echo start "" "C:\Users\^%username^%\AppData\Local\Programs\Python\Python311\python.exe" "%name%.py" >> timer.txt
+echo start "" "C:\Users\%%username%%\AppData\Local\Programs\Python\Python311\python.exe" "%name%.py" >> timer.txt
 echo. >> timer.txt
-echo TIMEOUT /T^%total^%/nobreak >> timer.txt
+echo TIMEOUT /T %%total%% /nobreak >> timer.txt
 echo. >> timer.txt
 echo Taskkill /IM python.exe /F ^>nul 2^>^&^1 >> timer.txt
 
@@ -195,5 +195,3 @@ set /p "txt=Do you want a text version of this file Y/N? "
 
 if %txt% == y (
 type %name%_installer.bat >> installer_%name%.txt )
-
-goto :EOF
