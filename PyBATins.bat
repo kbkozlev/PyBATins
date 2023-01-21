@@ -239,7 +239,6 @@ del timer_encoded_echo_mod.txt
 echo echo. >> %name%_installer.bat
 echo pause^>nul^|set/p =Instalation finnished, press any key to exit... >> %name%_installer.bat
 
-
 :: Create txt version
 if %txt% == y (
 type %name%_installer.bat >> %name%_installer.txt )
