@@ -1,11 +1,11 @@
 :: Created by kbkozlev
 
 @echo off
-setlocal enableextensions disabledelayedexpansion
+setlocal enableextensions disabledelayedexpansion 
 
 :: Set encoding and dimensions
 chcp 65001 >nul 2>&1
-mode 70, 23
+:: mode 70, 23 (WIN 11 does not comply with mode; Remove comment to run with proper dimensions)
 
 :: Welcome screen
 :START
@@ -49,7 +49,6 @@ goto START
 )
 
 set /p "req_file=Path to requirements.txt: "
-
 
 
 :: Begin writing the installer file
@@ -99,6 +98,13 @@ echo. >> %name%_installer.bat
 :: Create encoded version of script 
 certutil -encode %py_script% script_encoded.txt >nul 2>&1
 
+if not errorlevel 0 (
+pause > nul|set/p =System cannot find the file specified. Press enter to try again.
+del %name%_installer.bat
+cls
+goto START
+)
+
 for /f "tokens=* delims= " %%a in (script_encoded.txt) do (
 set /a N+=1
 echo echo %%a ^>^> script.txt >> script_encoded_echo_mod.txt
@@ -132,6 +138,13 @@ echo. >> %name%_installer.bat
 
 :: Create encoded version of requirements.txt
 certutil -encode %req_file% req_encoded.txt >nul 2>&1
+
+if not errorlevel 0 (
+pause > nul|set/p =System cannot find the file specified. Press enter to try again.
+del %name%_installer.bat
+cls
+goto START
+)
 
 for /f "tokens=* delims= " %%a in (req_encoded.txt) do (
 set /a N+=1
@@ -214,15 +227,16 @@ echo del timer.txt >> %name%_installer.bat
 echo echo -- Timer created >> %name%_installer.bat
 echo ^) >> %name%_installer.bat
 
-:: End of installer
-echo echo. >> %name%_installer.bat
-echo pause^>nul^|set/p =Instalation finnished, press any key to exit... >> %name%_installer.bat
-)
-
 :: Delete remaining timer files
 del timer.txt
 del timer_encoded.txt
 del timer_encoded_echo_mod.txt
+)
+
+:: End of installer
+echo echo. >> %name%_installer.bat
+echo pause^>nul^|set/p =Instalation finnished, press any key to exit... >> %name%_installer.bat
+
 
 :: Ask for txt version
 set /p "txt=Do you want a text version of this file Y/N? "
