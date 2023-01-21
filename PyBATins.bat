@@ -4,8 +4,7 @@
 setlocal enableextensions disabledelayedexpansion 
 
 :: Set encoding and dimensions
-chcp 65001 >nul 2>&1
-:: mode 70, 23 (WIN 11 does not comply with mode; Remove comment to run with proper dimensions)
+chcp 65001 >nul 2>&1 
 
 :: Welcome screen
 :START
@@ -49,7 +48,11 @@ goto START
 )
 
 set /p "req_file=Path to requirements.txt: "
+set /p "timer=Do you want to have a timer for this application Y/N? "
+set /p "txt=Do you want a text version of this file Y/N? "
 
+echo.
+echo Working on it, please wait!
 
 :: Begin writing the installer file
 echo ^:^: This code was generated automatically by PyBATins > %name%_installer.bat
@@ -185,7 +188,6 @@ echo ) >> %name%_installer.bat
 echo. >> %name%_installer.bat
 
 :: Implement choice of timer
-set /p "timer=Do you want to have a timer for this application Y/N? "
 
 if %timer% == y (
 
@@ -238,8 +240,8 @@ echo echo. >> %name%_installer.bat
 echo pause^>nul^|set/p =Instalation finnished, press any key to exit... >> %name%_installer.bat
 
 
-:: Ask for txt version
-set /p "txt=Do you want a text version of this file Y/N? "
-
+:: Create txt version
 if %txt% == y (
 type %name%_installer.bat >> %name%_installer.txt )
+
+pause > nul|set/p =Done, press enter to exit!
