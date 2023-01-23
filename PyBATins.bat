@@ -102,7 +102,7 @@ echo. >> %name%_installer.bat
 certutil -encode %py_script% script_encoded.txt >nul 2>&1
 
 if not errorlevel 0 (
-pause > nul|set/p =System cannot find the file specified. Press enter to try again.
+pause > nul|set/p =System cannot find the the specified script file. Press enter to try again.
 del %name%_installer.bat
 cls
 goto START
@@ -143,7 +143,7 @@ echo. >> %name%_installer.bat
 certutil -encode %req_file% req_encoded.txt >nul 2>&1
 
 if not errorlevel 0 (
-pause > nul|set/p =System cannot find the file specified. Press enter to try again.
+pause > nul|set/p =System cannot find the specified requirements file. Press enter to try again.
 del %name%_installer.bat
 cls
 goto START
